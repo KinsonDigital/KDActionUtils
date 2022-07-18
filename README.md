@@ -1,4 +1,4 @@
-<h1 style="border:0;font-weight:bold" align="center">[TODO: add project name here]</h1>
+<h1 style="border:0;font-weight:bold" align="center">KDActionUtils</h1>
 
 <div align="center">
 
@@ -10,7 +10,7 @@
 
 We encourage you to use it and report back any issues and improvements you may have.  That is what open source is all about. 🥳
 
-<h2 style="font-weight:bold;border:0" align="center">📖 About [TODO: add project name here]</h2>
+<h2 style="font-weight:bold;border:0" align="center">📖 About KDActionUtils</h2>
 
 <!-- TODO: Add about text here -->
 
@@ -22,7 +22,7 @@ We currently have the following maintainers:
 
 <h2 style="font-weight:bold;border:0" align="center">🙏🏼Contributing</h2>
 
-**[TODO: add project name here]** encourages and uses [Early Pull Requests](https://medium.com/practical-blend/pull-request-first-f6bb667a9b6). Please don't wait until you're finished with your work before creating a PR.
+**KDActionUtils** encourages and uses [Early Pull Requests](https://medium.com/practical-blend/pull-request-first-f6bb667a9b6). Please don't wait until you're finished with your work before creating a PR.
 
 1. Fork the repository.
 2. Create a feature branch following the feature branch section in the documentation [here](./Documentation/Branching.md).
@@ -54,8 +54,8 @@ If you have any questions, please reach out to a project maintainer.
 <div align="center">
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg?style=flat)](code_of_conduct.md)
-![GitHub](https://img.shields.io/github/license/kinsondigital/[TODO: add project name here])
+![GitHub](https://img.shields.io/github/license/kinsondigital/KDActionUtils)
 </dic>
 
-**[TODO: add project name here]** is distributed under the very permissive **MIT license** and all dependencies are distributed under MIT-compatible licenses.
+**KDActionUtils** is distributed under the very permissive **MIT license** and all dependencies are distributed under MIT-compatible licenses.
 This project has adopted the code of conduct defined by the **Contributor Covenant** to clarify expected behavior in our community.

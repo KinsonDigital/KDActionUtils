@@ -10,16 +10,16 @@
         <Version>1.0.0-preview.1</Version>
 
         <!--Update this for production and preview releases-->
-        <FileVersion>1.0.0-preview.1</FileVersion>        
+        <FileVersion>1.0.0-preview.1</FileVersion>
 
-        <PackageId>KinsonDigital.[TODO: add project name here]</PackageId>
+        <PackageId>KinsonDigital.KDActionUtils</PackageId>
         <Authors>Calvin Wilkinson</Authors>
         <Company>Kinson Digital</Company>
-        <Product>[TODO: add project name here]</Product>
+        <Product>KDActionUtils</Product>
         <Description>Simple library to retrieve GitHub related data.</Description>
         <Copyright>Copyright ©2022 Kinson Digital</Copyright>
         <PackageTags>github data</PackageTags>
-        <RootNamespace>[TODO: add project name here]</RootNamespace>
+        <RootNamespace>KDActionUtils</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -38,5 +38,5 @@
       <None Remove="stylecop.json" />
       <AdditionalFiles Include="stylecop.json" />
     </ItemGroup>
-    
+
 </Project>

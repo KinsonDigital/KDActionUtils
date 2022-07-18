@@ -6,7 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
-        <RootNamespace>[TODO: add project name here]Tests</RootNamespace>
+        <RootNamespace>KDActionUtilsTests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -41,7 +41,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\CSharpLibTemplateRepo\CSharpLibTemplateRepo.csproj" />
+      <ProjectReference Include="..\..\KDActionUtils\KDActionUtils.csproj" />
     </ItemGroup>
 
 </Project>
