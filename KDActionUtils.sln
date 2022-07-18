@@ -14,6 +14,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.github\FUNDING.yml = .github\FUNDING.yml
 		README.md = README.md
 		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Issue Templates", "Issue Templates", "{D63FC876-026C-442A-AC76-A46943658EEE}"
+	ProjectSection(SolutionItems) = preProject
+		.github\ISSUE_TEMPLATE\bug-issue-template.yml = .github\ISSUE_TEMPLATE\bug-issue-template.yml
+		.github\ISSUE_TEMPLATE\project-item-issue-template.yml = .github\ISSUE_TEMPLATE\project-item-issue-template.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pull Request Templates", "Pull Request Templates", "{0048B383-B483-4A23-9942-5AD98247DDDC}"
+	ProjectSection(SolutionItems) = preProject
+		.github\PULL_REQUEST_TEMPLATE\feature-pr.md = .github\PULL_REQUEST_TEMPLATE\feature-pr.md
+		.github\PULL_REQUEST_TEMPLATE\preview-feature-pr.md = .github\PULL_REQUEST_TEMPLATE\preview-feature-pr.md
+		.github\PULL_REQUEST_TEMPLATE\preview-release-pr.md = .github\PULL_REQUEST_TEMPLATE\preview-release-pr.md
+		.github\PULL_REQUEST_TEMPLATE\production-release-pr.md = .github\PULL_REQUEST_TEMPLATE\production-release-pr.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{B6AF61E5-B7D3-4E4E-B9B2-BF540F77F953}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build-status-check.yml = .github\workflows\build-status-check.yml
+		.github\workflows\preview-release.yml = .github\workflows\preview-release.yml
+		.github\workflows\unit-testing-status-check.yml = .github\workflows\unit-testing-status-check.yml
 	EndProjectSection
 EndProject
 Global
@@ -33,5 +56,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A2124FFE-C6A1-46A7-8440-F0F5709DD08C} = {E204672C-F241-4BB7-AAE4-5147BC5B4FF5}
+		{D63FC876-026C-442A-AC76-A46943658EEE} = {67F82AED-1502-4803-855A-CDB26DC685B4}
+		{0048B383-B483-4A23-9942-5AD98247DDDC} = {67F82AED-1502-4803-855A-CDB26DC685B4}
+		{B6AF61E5-B7D3-4E4E-B9B2-BF540F77F953} = {67F82AED-1502-4803-855A-CDB26DC685B4}
 	EndGlobalSection
 EndGlobal
