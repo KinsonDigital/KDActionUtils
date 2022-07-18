@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>10.0</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <!--Update this for production and preview releases-->
+        <Version>1.0.0-preview.1</Version>
+
+        <!--Update this for production and preview releases-->
+        <FileVersion>1.0.0-preview.1</FileVersion>        
+
+        <PackageId>KinsonDigital.[TODO: add project name here]</PackageId>
+        <Authors>Calvin Wilkinson</Authors>
+        <Company>Kinson Digital</Company>
+        <Product>[TODO: add project name here]</Product>
+        <Description>Simple library to retrieve GitHub related data.</Description>
+        <Copyright>Copyright ©2022 Kinson Digital</Copyright>
+        <PackageTags>github data</PackageTags>
+        <RootNamespace>[TODO: add project name here]</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="RestSharp" Version="108.0.1" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="stylecop.json" />
+      <AdditionalFiles Include="stylecop.json" />
+    </ItemGroup>
+    
+</Project>

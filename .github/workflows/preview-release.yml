@@ -1,0 +1,28 @@
+name: 🚀Preview Release
+
+on:
+  workflow_dispatch: # Preview releases are only done manually
+
+jobs:
+  get_version_from_project_file:
+    name: Get Version From Project File
+    runs-on: ubuntu-latest # Cannot use windows
+    steps:
+    - uses: actions/checkout@v2
+
+    # TODO: Add job to resolve file path
+
+    - name: Get Version From C# Project File
+      id: get-version
+      uses: KinsonDigital/VersionMiner@v1.0.0-preview.1
+      with:
+        repo-owner: KinsonDigital
+        repo-name: [TODO: add project name here]
+        branch-name: "${{ github.ref }}"
+        file-format: "xml"
+        file-path: "${{ github.workspace }}/[TODO: add project name here]/[TODO: add project name here].csproj" # TODO: Change this to output of resolve path job
+        version-keys: Version
+
+    - name: Print Version From File
+      id: print-output
+      run: echo "${{ steps.get-version.outputs.version }}"
