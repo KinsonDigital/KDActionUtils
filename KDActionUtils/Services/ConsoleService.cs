@@ -16,7 +16,7 @@ public class ConsoleService : IConsoleService<ConsoleContext>
     public virtual ConsoleContext ConsoleContext { get; set; } = ConsoleContext.CLI;
 
     /// <inheritdoc/>
-    public void Write(string value) => Console.Write(value);
+    public virtual void Write(string value) => Console.Write(value);
 
     /// <inheritdoc/>
     public virtual void WriteLine(string value) => Console.WriteLine(value);
