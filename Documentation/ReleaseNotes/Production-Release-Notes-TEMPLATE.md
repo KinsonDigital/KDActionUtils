@@ -1,5 +1,5 @@
 <h1 align="center" style='color:mediumseagreen;font-weight:bold'>
-[TODO: add project name here] Release Notes - [add-prod-release-here]</h1>
+KDActionUtils Release Notes - [add-prod-release-here]</h1>
 
 <h2 style="font-weight:bold" align="center">New ✨</h2>
 

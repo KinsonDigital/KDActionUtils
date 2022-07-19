@@ -1,6 +1,6 @@
 <h1 align="center">Branching</h1>
 
-**[TODO: add project name here]** uses a more complicated branching model, but it gives you more control of the SDLC (Software Development Life Cycle).  This branching model allows for a clear purpose for adding features, bug fixes, preview releases, qa releases and standard releases.
+**KDActionUtils** uses a more complicated branching model, but it gives you more control of the SDLC (Software Development Life Cycle).  This branching model allows for a clear purpose for adding features, bug fixes, preview releases, qa releases and standard releases.
 
 As a standard contributor though, all you have to worry about is simply creating <span style="color: #66B2FF;font-weight:bold">feature</span> branches and creating pull requests to merge those branches into the <span style="color: #FFB366;font-weight:bold">develop</span> branch.  The rest is taken care of by a solid CI/CD system as well as the maintainers of the project.  Only the organization owner and designated team members will manage the release process.  So contributing is very easy!!🥳
 

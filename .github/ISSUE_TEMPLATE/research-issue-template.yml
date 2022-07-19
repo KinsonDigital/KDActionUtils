@@ -1,19 +1,30 @@
-name: 🚧 Project Item
-description: Create an issue for a project.  (Project maintainers only)
-title: "🚧"
+name: 🔬 Research Item
+description: Create an issue to perform research.
+labels: ["🔬research"]
+title: "🔬"
 body:
 - type: checkboxes
   attributes:
     label: I have done the items below . . .
     description: Please make sure to do the items below.
     options:
-    - label: I have updated the title without removing the 🚧 emoji.
+    - label: I have updated the title without removing the 🔬 emoji.
       required: true
 
 - type: textarea
   attributes:
-    label: Description
-    description: A description of the feature and/or change from the user's perspective.
+    label: What To Research
+    description: A description of the research to perform.
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Research Results
+    description: All of the research results.
+    placeholder: |
+      This can be notes, links to resources, file attachments, and images.
+      Anything required to collect the research results goes here.
   validations:
     required: true
 
@@ -24,8 +35,9 @@ body:
       The list of items that need to be completed to satisfy the definition of done.
     value: |
       **This issue is finished when:**
-      - [ ] Unit tests added
-      - [ ] All unit tests pass
+      - [ ] https://github.com/KinsonDigital/KDActionUtils/labels/%F0%9F%94%ACresearch label added to this issue.
+      - [ ] Research complete and issues created (if needed).
+      - [ ] If any issues were created, they have been added to the _**Related Work**_ section below.
   validations:
     required: true
     render: markdown
@@ -36,10 +48,8 @@ body:
     description: Complete the following items before requesting a PR review.
     options:
     - label: Priority label added to this issue.  Refer to the _**Priority Type Labels**_ section below.
-    - label: Change type labels added to this issue.  Refer to the _**Change Type Labels**_ section below.
     - label: Issue linked to the correct project.
     - label: Issue linked to the correct milestone.
-    - label: Draft pull request created and linked to this issue.
 
 - type: textarea
   attributes:
@@ -51,7 +61,7 @@ body:
         - #20 Add unit tests to service
         - #30 Cleanup code in UI
     description: |
-      A list of issues that are dependencies of this issue and need to be finished first.
+      A list of dependencies that need to be finished first.
       Use the '#\<issue-number\>' syntax to link an issue.
   validations:
     required: false
@@ -66,7 +76,7 @@ body:
         - #20 Add unit tests to service
         - #30 Cleanup code in UI
     description: |
-      A list of issues related to this issue but are not a dependency.
+      A list of related issues that are not a dependency.
       Use the '#\<issue-number\>' syntax to link an issue.
   validations:
     required: false
@@ -76,18 +86,6 @@ body:
     label: "Additional Information:"
     description: DO NOT CHANGE ANYTHING BELOW!!
     value: |
-      **_<details closed><summary>Change Type Labels</summary>_**
-      
-      | Change Type         | Label                                                                                |
-      |---------------------|--------------------------------------------------------------------------------------|
-      | Bug Fixes           | https://github.com/KinsonDigital/KDActionUtils/labels/%F0%9F%90%9Bbug                     |
-      | Breaking Changes    | https://github.com/KinsonDigital/KDActionUtils/labels/%F0%9F%A7%A8breaking%20changes      |
-      | Enhancement         | https://github.com/KinsonDigital/KDActionUtils/labels/enhancement                         |
-      | Workflow Changes    | https://github.com/KinsonDigital/KDActionUtils/labels/workflow                            |
-      | Code Doc Changes    | https://github.com/KinsonDigital/KDActionUtils/labels/%F0%9F%93%91documentation%2Fcode    |
-      | Product Doc Changes | https://github.com/KinsonDigital/KDActionUtils/labels/%F0%9F%93%9Ddocumentation%2Fproduct |
-      </details>
-
       **_<details closed><summary>Priority Type Labels</summary>_**
       
       | Priority Type       | Label                                                              |
