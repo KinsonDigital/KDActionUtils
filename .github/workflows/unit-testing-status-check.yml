@@ -40,6 +40,6 @@ jobs:
     needs: determine_build_config
     uses: KinsonDigital/Infrastructure/.github/workflows/unit-testing-status-check.yml@master
     with:
-      project-name: "[TODO: add project name here]Tests"
+      project-name: "KDActionUtilsTests"
       build-config: ${{ needs.determine_build_config.outputs.build-config }}
       net-sdk-version: 6.0.300

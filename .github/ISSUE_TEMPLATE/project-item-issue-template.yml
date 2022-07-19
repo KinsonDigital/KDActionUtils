@@ -80,21 +80,21 @@ body:
       
       | Change Type         | Label                                                                                |
       |---------------------|--------------------------------------------------------------------------------------|
-      | Bug Fixes           | https://github.com/KinsonDigital/[TODO: add project name here]/labels/%F0%9F%90%9Bbug                     |
-      | Breaking Changes    | https://github.com/KinsonDigital/[TODO: add project name here]/labels/%F0%9F%A7%A8breaking%20changes      |
-      | Enhancement         | https://github.com/KinsonDigital/[TODO: add project name here]/labels/enhancement                         |
-      | Workflow Changes    | https://github.com/KinsonDigital/[TODO: add project name here]/labels/workflow                            |
-      | Code Doc Changes    | https://github.com/KinsonDigital/[TODO: add project name here]/labels/%F0%9F%93%91documentation%2Fcode    |
-      | Product Doc Changes | https://github.com/KinsonDigital/[TODO: add project name here]/labels/%F0%9F%93%9Ddocumentation%2Fproduct |
+      | Bug Fixes           | https://github.com/KinsonDigital/KDActionUtils/labels/%F0%9F%90%9Bbug                     |
+      | Breaking Changes    | https://github.com/KinsonDigital/KDActionUtils/labels/%F0%9F%A7%A8breaking%20changes      |
+      | Enhancement         | https://github.com/KinsonDigital/KDActionUtils/labels/enhancement                         |
+      | Workflow Changes    | https://github.com/KinsonDigital/KDActionUtils/labels/workflow                            |
+      | Code Doc Changes    | https://github.com/KinsonDigital/KDActionUtils/labels/%F0%9F%93%91documentation%2Fcode    |
+      | Product Doc Changes | https://github.com/KinsonDigital/KDActionUtils/labels/%F0%9F%93%9Ddocumentation%2Fproduct |
       </details>
 
       **_<details closed><summary>Priority Type Labels</summary>_**
       
       | Priority Type       | Label                                                              |
       |---------------------|--------------------------------------------------------------------|
-      | Low Priority        | https://github.com/KinsonDigital/[TODO: add project name here]/labels/low%20priority    |
-      | Medium Priority     | https://github.com/KinsonDigital/[TODO: add project name here]/labels/medium%20priority |
-      | High Priority       | https://github.com/KinsonDigital/[TODO: add project name here]/labels/high%20priority   |
+      | Low Priority        | https://github.com/KinsonDigital/KDActionUtils/labels/low%20priority    |
+      | Medium Priority     | https://github.com/KinsonDigital/KDActionUtils/labels/medium%20priority |
+      | High Priority       | https://github.com/KinsonDigital/KDActionUtils/labels/high%20priority   |
       </details>
 
 - type: checkboxes

@@ -17,10 +17,10 @@ jobs:
       uses: KinsonDigital/VersionMiner@v1.0.0-preview.1
       with:
         repo-owner: KinsonDigital
-        repo-name: VersionMiner
+        repo-name: KDActionUtils
         branch-name: "${{ github.ref }}"
         file-format: "xml"
-        file-path: "${{ github.workspace }}/VersionMiner/VersionMiner.csproj" # TODO: Change this to output of resolve path job
+        file-path: "${{ github.workspace }}/KDActionUtils/KDActionUtils.csproj" # TODO: Change this to output of resolve path job
         version-keys: Version
 
     - name: Print Version From File
