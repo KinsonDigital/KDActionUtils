@@ -37,11 +37,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="stylecop.json" />
+      <ProjectReference Include="..\..\KDActionUtils\KDActionUtils.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\KDActionUtils\KDActionUtils.csproj" />
+      <None Remove="stylecop.json" />
+      <AdditionalFiles Include="stylecop.json" />
     </ItemGroup>
 
 </Project>
