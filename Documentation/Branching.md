@@ -13,7 +13,7 @@ As a standard contributor though, all you have to worry about is simply creating
 
 <h3 align="left" style="color: #82B366;font-weight:bold">Master Branch</h3>
 
-Long living branch that represents stable production versions of **Velaptor**:
+Long living branch that represents stable production versions of **KDActionUtils**:
 - **Branch Syntax:** master
 - **Branches That Can Merge Into Master:**
   - <span style="color: #00CCCC;font-weight:bold">release</span> branches via pull request
