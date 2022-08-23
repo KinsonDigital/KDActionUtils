@@ -48,20 +48,20 @@ jobs:
         run: Write-Host "::set-output name=sdk-version::${{ env.NET_SDK_VERSION }}";
 
   # Build Main Projects
-  build_[TODO: add project name here]:
-    name: Build [TODO: add project name here] Project
+  build_kdactionutils:
+    name: Build KDActionUtils Project
     needs: [determine_build_config, get_sdk_version]
     uses: KinsonDigital/Infrastructure/.github/workflows/build-status-check.yml@master
     with:
-      project-name: "[TODO: add project name here]"
+      project-name: "KDActionUtils"
       build-config: ${{ needs.determine_build_config.outputs.build-config }}
       net-sdk-version: ${{ needs.get_sdk_version.outputs.sdk-version }}
 
-  build_[TODO: add project name here]_tests:
-    name: Build [TODO: add project name here] Tests Project
+  build_kdactionutils_tests:
+    name: Build KDActionUtils Tests Project
     needs: [determine_build_config, get_sdk_version]
     uses: KinsonDigital/Infrastructure/.github/workflows/build-status-check.yml@master
     with:
-      project-name: "[TODO: add project name here]Tests"
+      project-name: "KDActionUtilsTests"
       build-config: ${{ needs.determine_build_config.outputs.build-config }}
       net-sdk-version: ${{ needs.get_sdk_version.outputs.sdk-version }}

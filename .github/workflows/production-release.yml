@@ -1,4 +1,4 @@
-name: 🚀Preview Release
+name: 🚀Production Release
 
 
 env:
@@ -7,7 +7,7 @@ env:
 
 
 on:
-  workflow_dispatch: # Preview releases are only done manually
+  workflow_dispatch: # Production releases are only done manually
 
 
 jobs:
