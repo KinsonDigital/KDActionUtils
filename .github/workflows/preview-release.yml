@@ -11,51 +11,34 @@ on:
 
 
 jobs:
-  determine_build_config:
-      name: Determine Build Configuration
-      runs-on: ubuntu-latest
-      outputs:
-        build-config: ${{ steps.get-build-config.outputs.build-config }}
-      steps:
-        - name: Get Build Config
-          id: get-build-config
-          shell: pwsh
-          run: |
-            # If the destination branch that the pull request is merging into is the master, do a release build
-            if ( "${{ github.base_ref }}" -eq "master") {
-              Write-Host "::set-output name=build-config::Release";
-            } else { # Any other branch than master, do a debug build
-              Write-Host "::set-output name=build-config::Debug";
-            }
-
-  get_sdk_version:
-    name: Get SDK Version
+  collect_release_data: # Collects all of the required information for the purpose of the release
+    name: Collect Data For Release
     runs-on: ubuntu-latest
     outputs:
+      build-config: ${{ steps.get-build-config.outputs.build-config }}
       sdk-version: ${{ steps.get-sdk-version.outputs.sdk-version }}
-    steps:
-      - name: Get SDK Version From Environment Variable
-        id: get-sdk-version
-        shell: pwsh
-        run: Write-Host "::set-output name=sdk-version::${{ env.NET_SDK_VERSION }}";
-
-  resolve_project_file: # Output name is 'project-file-path'
-    name: Resolve Project File Path
-    uses: KinsonDigital/Infrastructure/.github/workflows/resolve-csharp-proj-file.yml@v3.0.0
-    with:
-      project-name: KDActionUtils
-
-  get_version_from_project_file:
-    name: Get Version From Project File
-    runs-on: ubuntu-latest # Cannot use windows
-    needs: resolve_project_file
-    outputs:
-      version: ${{ steps.get-version.outputs.version }}
+      proj-version: ${{ steps.get-proj-version.outputs.version }}
     steps:
     - uses: actions/checkout@v2
 
+    - name: Get Build Config # TODO: Once BranchValidator is put into use, delete this
+      id: get-build-config
+      shell: pwsh
+      run: |
+        # If the destination branch that the pull request is merging into is the master, do a release build
+        if ("${{ github.ref }}" -eq "master") {
+          Write-Host "::set-output name=build-config::Release";
+        } else { # Any other branch than master, do a debug build
+          Write-Host "::set-output name=build-config::Debug";
+        }    
+
+    - name: Get SDK Version From Environment Variable
+      id: get-sdk-version
+      shell: pwsh
+      run: Write-Host "::set-output name=sdk-version::${{ env.NET_SDK_VERSION }}";
+
     - name: Get Version From C# Project File
-      id: get-version
+      id: get-proj-version
       uses: KinsonDigital/VersionMiner@v1.0.0-preview.2
       with:
         repo-owner: KinsonDigital
@@ -66,43 +49,78 @@ jobs:
         version-keys: Version
         trim-start-from-branch: refs/heads/
 
-  build_main_project:
+
+  print_collected_data: # Print the collection results
+    name: Print Collected Data
+    runs-on: ubuntu-latest
+    needs: collect_release_data
+    steps:
+    - name: Print Data
+      shell: pwsh
+      run: |
+        Write-Host "Build Config: ${{ needs.collect_release_data.outputs.build-config }}";
+        Write-Host "SDK Version: ${{ needs.collect_release_data.outputs.sdk-version }}";
+        Write-Host "Project Version: ${{ needs.collect_release_data.outputs.proj-version }}";
+
+
+  # TODO: Add validation job here.  Validate branch name, version, if nuget exists, if github release exists, etc.
+  #       This would be TagVerifier, BranchValidator, VersionValidator, GitHubReleaseChecker, GotNuget, etc, 
+  #       Try to get all of the jobs to run asynchronously.  Have one single job print all of the results,
+  #       and then have the rest of the jobs below depend on the print job.  This will allow async runs of the jobs.
+
+
+  build_main_project: # Build the main project
     name: Build KDActionUtils Project
-    needs: [determine_build_config, get_sdk_version]
+    needs: [collect_release_data]
     uses: KinsonDigital/Infrastructure/.github/workflows/build-csharp-project.yml@v2.0.0
     with:
       project-name: KDActionUtils
-      build-config: ${{ needs.determine_build_config.outputs.build-config }}
-      net-sdk-version: ${{ needs.get_sdk_version.outputs.sdk-version }}
+      build-config: ${{ needs.collect_release_data.outputs.build-config }}
+      net-sdk-version: ${{ needs.collect_release_data.outputs.sdk-version }}
 
-  build_test_project:
+
+  build_test_project: # Build the test project
     name: Build KDActionUtils Tests Project
-    needs: [determine_build_config, get_sdk_version]
+    needs: [collect_release_data]
     uses: KinsonDigital/Infrastructure/.github/workflows/build-csharp-project.yml@v2.0.0
     with:
       project-name: KDActionUtilsTests
-      build-config: ${{ needs.determine_build_config.outputs.build-config }}
-      net-sdk-version: ${{ needs.get_sdk_version.outputs.sdk-version }}
+      build-config: ${{ needs.collect_release_data.outputs.build-config }}
+      net-sdk-version: ${{ needs.collect_release_data.outputs.sdk-version }}
 
-  run_tests:
+
+  run_tests: # Run the unit tests
     name: Run Tests
-    needs: [determine_build_config, get_sdk_version, build_main_project, build_test_project]
+    needs: [build_main_project, build_test_project]
     uses: KinsonDigital/Infrastructure/.github/workflows/run-csharp-tests.yml@v2.0.0
     with:
       project-name: KDActionUtilsTests
-      build-config: ${{ needs.determine_build_config.outputs.build-config }}
-      net-sdk-version: ${{ needs.get_sdk_version.outputs.sdk-version }}
+      build-config: ${{ needs.collect_release_data.outputs.build-config }}
+      net-sdk-version: ${{ needs.collect_release_data.outputs.sdk-version }}
 
-  publish_nuget_package:
+
+  publish_github_release: # Create GitHub release
+    name: Publish GitHub Release
+    runs-on: ubuntu-latest
+    needs: [collect_release_data, run_tests]
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Publish GitHub Release
+      uses: softprops/action-gh-release@v0.1.14
+      with:
+        name: "🚀Preview Release - v${{ needs.collect_release_data.outputs.proj-version }}"
+        token: ${{ secrets.REPO_TOKEN }} # secrets.GITHUB_TOKEN will not work here if the project has protected branches setup
+        tag_name: v${{ needs.collect_release_data.outputs.proj-version }}
+        body_path: "${{ github.workspace }}/Documentation/ReleaseNotes/PreviewReleases/Release-Notes-v${{ needs.collect_release_data.outputs.proj-version }}.md"
+        files: "${{ github.workspace }}/Documentation/ReleaseNotes/PreviewReleases/Release-Notes-v${{ needs.collect_release_data.outputs.proj-version }}.md"
+        prerelease: true
+
+
+  publish_nuget_package: # Publish the nuget package to nuget.org
     name: Publish NuGet Package
     runs-on: ubuntu-latest
-    needs: [
-      determine_build_config,
-      get_version_from_project_file,
-      resolve_project_file,
-      build_main_project,
-      build_test_project,
-      run_tests]
+    needs: [collect_release_data, run_tests]
     steps:
     - uses: actions/checkout@v2
 
@@ -110,9 +128,9 @@ jobs:
       uses: NuGet/setup-nuget@v1.0.5
 
     - name: Create Nuget Package
-      run: dotnet pack "${{ needs.resolve_project_file.outputs.project-file-path }}" -o "${{ github.workspace }}" -c ${{ needs.determine_build_config.outputs.build-config }}
+      run: dotnet pack "${{ needs.collect_release_data.outputs.project-file-path }}" -o "${{ github.workspace }}" -c ${{ needs.collect_release_data.outputs.build-config }}
 
     - name: Publish Nuget Package
-      run: dotnet nuget push "${{ github.workspace }}/KinsonDigital.${{ env.PROJECT_NAME }}.${{ needs.get_version_from_project_file.outputs.version }}.nupkg" `
+      run: dotnet nuget push "${{ github.workspace }}/KinsonDigital.${{ env.PROJECT_NAME }}.${{ needs.collect_release_data.outputs.proj-version }}.nupkg" `
         --api-key ${{ secrets.NUGET_ORG_API_KEY }} `
         --source https://api.nuget.org/v3/index.json
