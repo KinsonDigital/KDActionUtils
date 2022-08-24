@@ -3,6 +3,7 @@
         "KDActionUtils",
         "Kinson",
         "pwsh",
-        "runsettings"
+        "runsettings",
+        "softprops"
     ]
 }
