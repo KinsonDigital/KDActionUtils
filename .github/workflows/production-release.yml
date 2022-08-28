@@ -63,8 +63,24 @@ jobs:
         Write-Host "Project Version: ${{ needs.collect_release_data.outputs.proj-version }}";
 
 
-  # TODO: Add validation job here.  Validate branch name, version, if nuget exists, if github release exists, etc.
-  #       This would be TagVerifier, BranchValidator, VersionValidator, GitHubReleaseChecker, GotNuget, etc, 
+  validate_release:
+    name: Validate Release
+    runs-on: ubuntu-latest
+    outputs:
+      valid-branch: "${{ steps.validate-branch.outputs.validate-branch }}"
+    needs: [collect_release_data]
+    steps:
+    - name: Validate Branch
+      id: validate-branch
+      uses: KinsonDigital/BranchValidator@v1.0.0-preview.2
+      with:
+        branch-name: ${{ github.ref }}
+        validation-logic: "equalTo('master') && allLowerCase()"
+        trim-from-start: refs/heads/
+
+
+  # TODO: Add validation job here.  Validate version, if nuget exists, if github release exists, etc.
+  #       This would be TagVerifier, VersionValidator, GitHubReleaseChecker, GotNuget, etc, 
   #       Try to get all of the jobs to run asynchronously.  Have one single job print all of the results,
   #       and then have the rest of the jobs below depend on the print job.  This will allow async runs of the jobs.
 
