@@ -75,7 +75,7 @@ jobs:
       uses: KinsonDigital/BranchValidator@v1.0.0-preview.2
       with:
         branch-name: ${{ github.ref }}
-        validation-logic: "equalTo('preview/feature/#-*') && allLowerCase()"
+        validation-logic: "equalTo('preview/v#.#.#-preview.#') && allLowerCase()"
         trim-from-start: refs/heads/
 
 
